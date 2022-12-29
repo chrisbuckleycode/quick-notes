@@ -7,13 +7,17 @@ A Python web app featuring two pages (possibly combined into one):
 
 ## Pseudo-code / Decomposition
 
---Flask
---Protect from abuse with logon page
+Flask
+Protect from abuse with logon page
 
---Main Page
+### Main Page
 - input type = text
 - click button to submit
 - print confirmation message after submission
 
---Backend
+### Backend
 - database (mysql)
+
+## References
+
+- [PythonAnywhere](https://blog.pythonanywhere.com/121/)
