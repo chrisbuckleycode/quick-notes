@@ -1,19 +1,18 @@
 from flask import Flask, redirect, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
-# built-in, don't need to install with pip
+# standard library, don't need to install with pip
 import logging
 
 app = Flask(__name__)
 # Used during development, enables more detailed error messages in the browser instead of just showing the Error 500 Page
 app.config["DEBUG"] = True
 
-# Required for logger.info. Also saves to file.
-# Adds timestamp, name, level name, log message
+# define logger and config
+logger = logging.getLogger()
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
-                    datefmt='%m-%d %H:%M',
-                    filename='application.log',
-                    filemode='w')
+                    datefmt='%Y-%m-%d %H:%M:%S',
+                    filename='application.log')
 
 SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
 #    username="the username from the 'Databases' tab",
@@ -70,5 +69,5 @@ def index():
 @app.route('/anotherpage')
 def anotherpage():
     # root logger e.g. logger1.info for other loggers
-    logging.info('Returning AnotherPage blabla')
+    logger.info('Returning AnotherPage')
     return 'This is another page'
